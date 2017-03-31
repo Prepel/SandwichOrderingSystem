@@ -32,7 +32,7 @@ class Money
     /**
      * @return PositiveAmount
      */
-    public function getAmount()
+    public function getPositiveAmount()
     {
         return $this->amount;
     }

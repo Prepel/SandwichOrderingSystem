@@ -3,6 +3,8 @@
 namespace Order;
 
 use Sandwich\ToppedSandwich;
+use Util\Currency;
+use Util\Money;
 use Util\PositiveAmount;
 
 class OrderLine
@@ -39,7 +41,7 @@ class OrderLine
     /**
      * @return PositiveAmount
      */
-    public function getAmount()
+    public function getPositiveAmount()
     {
         return $this->amount;
     }
@@ -50,6 +52,19 @@ class OrderLine
     public function getRemark()
     {
         return $this->remark;
+    }
+
+    /**
+     * @return Money
+     */
+    public function getTotalPrice()
+    {
+        $totalPrice = $this->getToppedSandwich()->getMoney()->getPositiveAmount()->getAmount() * $this->getPositiveAmount()->getAmount();
+
+        $currency = new Currency($this->getToppedSandwich()->getMoney()->getCurrency());
+        $positiveAmount = new PositiveAmount($totalPrice);
+
+        return new Money($currency, $positiveAmount);
     }
 
 }
