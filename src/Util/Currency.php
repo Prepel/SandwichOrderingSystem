@@ -6,10 +6,10 @@ use Exception\CurrencyNotSupportedException;
 
 class Currency
 {
-    const ALLOWED_CURRENCIES = ['EUR'];
+    const SUPPORTED_CURRENCIES = ['EUR'];
 
     /** @var  string */
-    private $_name;
+    private $name;
 
 
     /**
@@ -21,9 +21,9 @@ class Currency
      */
     public function __construct( $name )
     {
-        $this->_isCurrencySupported($name);
+        $this->isCurrencySupported($name);
 
-        $this->_name = $name;
+        $this->name = $name;
     }
 
     /**
@@ -31,7 +31,7 @@ class Currency
      */
     public function getName()
     {
-        return $this->_name;
+        return $this->name;
     }
 
     /**
@@ -39,10 +39,10 @@ class Currency
      *
      * @throws CurrencyNotSupportedException
      */
-    private function _isCurrencySupported($name)
+    private function isCurrencySupported($name)
     {
-        if(!in_array($name, static::ALLOWED_CURRENCIES)){
-            throw new CurrencyNotSupportedException('Currency ' . $name . ' not supported. Allowed currencies: ' . print_r(static::ALLOWED_CURRENCIES, true));
+        if(!in_array($name, static::SUPPORTED_CURRENCIES)){
+            throw new CurrencyNotSupportedException('Currency ' . $name . ' not supported. Allowed currencies: ' . print_r(static::SUPPORTED_CURRENCIES, true));
         }
     }
 
