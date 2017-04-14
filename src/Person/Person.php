@@ -2,23 +2,25 @@
 
 namespace Person;
 
+use Util\Name;
+
 class Person
 {
-    /** @var  $name */
+    /** @var Name */
     private $name;
 
     /**
      * Person constructor.
      *
-     * @param $name
+     * @param Name $name
      */
-    public function __construct( $name )
+    public function __construct( Name $name )
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return Name
      */
     public function getName()
     {

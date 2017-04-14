@@ -3,29 +3,30 @@
 namespace Sandwich;
 
 use Exception\TypeNotSupportedException;
+use Util\Name;
 
 class Type
 {
     const SUPPORTED_TYPES = ['pistolet', 'baguette'];
 
-    /** @var  string */
+    /** @var  Name */
     private $name;
 
     /**
      * Type constructor.
      *
-     * @param string $name
+     * @param Name $name
      *
      * @throws TypeNotSupportedException
      */
-    public function __construct( $name )
+    public function __construct( Name $name )
     {
         $this->isTypeSupported($name);
         $this->name = $name;
     }
 
     /**
-     * @return string
+     * @return Name
      */
     public function getName()
     {
@@ -33,14 +34,14 @@ class Type
     }
 
     /**
-     * @param string $name
+     * @param Name $name
      *
      * @throws TypeNotSupportedException
      */
     private function isTypeSupported($name)
     {
-        if(!in_array($name, static::SUPPORTED_TYPES)){
-            throw new TypeNotSupportedException('Type ' . $name . ' not supported. Allowed types: ' . print_r(static::SUPPORTED_TYPES, true));
+        if(!in_array($name->getName(), static::SUPPORTED_TYPES)){
+            throw new TypeNotSupportedException('Type ' . $name->getName() . ' not supported. Allowed types: ' . print_r(static::SUPPORTED_TYPES, true));
         }
     }
 }

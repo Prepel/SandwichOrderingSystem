@@ -4,11 +4,12 @@ namespace Supplier;
 
 use Sandwich\ToppedSandwich;
 use Util\Email;
+use Util\Name;
 use Util\PhoneNumber;
 
 class Supplier
 {
-    /** @var  string */
+    /** @var Name */
     private $name;
     /** @var  Email */
     private $email;
@@ -20,12 +21,12 @@ class Supplier
     /**
      * Supplier constructor.
      *
-     * @param string $name
+     * @param Name $name
      * @param Email $email
      * @param PhoneNumber $phoneNumber
      * @param ToppedSandwich[] $toppedSandwiches
      */
-    public function __construct( $name, Email $email, PhoneNumber $phoneNumber, array $toppedSandwiches )
+    public function __construct( Name $name, Email $email, PhoneNumber $phoneNumber, array $toppedSandwiches )
     {
         $this->name             = $name;
         $this->email            = $email;
@@ -35,7 +36,7 @@ class Supplier
     }
 
     /**
-     * @return string
+     * @return Name
      */
     public function getName()
     {

@@ -2,23 +2,25 @@
 
 namespace Sandwich;
 
+use Util\Name;
+
 class Topping
 {
-    /** @var  string */
+    /** @var  Name */
     private $name;
 
     /**
      * Topping constructor.
      *
-     * @param string $name
+     * @param Name $name
      */
-    public function __construct( $name )
+    public function __construct( Name $name )
     {
         $this->name = $name;
     }
 
     /**
-     * @return string
+     * @return Name
      */
     public function getName()
     {

@@ -3,27 +3,28 @@
 namespace Sandwich;
 
 use Exception\SizeNotSupportedException;
+use Util\Name;
 
 class Size
 {
     const SUPPORTED_SIZES = ['normal', 'big'];
 
-    /** @var string */
+    /** @var Name */
     private $name;
 
     /**
      * Size constructor.
      *
-     * @param string $name
+     * @param Name $name
      */
-    public function __construct( $name )
+    public function __construct( Name $name )
     {
         $this->isSizeSupported($name);
         $this->name = $name;
     }
 
     /**
-     * @return string
+     * @return Name
      */
     public function getName()
     {
@@ -31,14 +32,14 @@ class Size
     }
 
     /**
-     * @param string $name
+     * @param Name $name
      *
      * @throws SizeNotSupportedException
      */
-    private function isSizeSupported($name)
+    private function isSizeSupported(Name $name)
     {
-        if(!in_array($name, static::SUPPORTED_SIZES)){
-            throw new SizeNotSupportedException('Size ' . $name . ' not supported. Allowed sizes: ' . print_r(static::SUPPORTED_SIZES, true));
+        if(!in_array($name->getName(), static::SUPPORTED_SIZES)){
+            throw new SizeNotSupportedException('Size ' . $name->getName() . ' not supported. Allowed sizes: ' . print_r(static::SUPPORTED_SIZES, true));
         }
     }
 

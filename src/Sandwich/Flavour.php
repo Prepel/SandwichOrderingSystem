@@ -3,28 +3,29 @@
 namespace Sandwich;
 
 use Exception\FlavourNotSupportedException;
+use Util\Name;
 
 class Flavour
 {
     const SUPPORTED_FLAVOURS = ['white', 'brown'];
 
-    /** @var  string */
+    /** @var Name */
     private $name;
 
     /**
      * Flavour constructor.
      *
-     * @param $name
+     * @param Name $name
      * @throws FlavourNotSupportedException
      */
-    public function __construct( $name )
+    public function __construct( Name $name )
     {
         $this->isFlavourSupported($name);
         $this->name = $name;
     }
 
     /**
-     * @return string
+     * @return Name
      */
     public function getName()
     {
@@ -32,14 +33,14 @@ class Flavour
     }
 
     /**
-     * @param $name
+     * @param Name $name
      *
      * @throws FlavourNotSupportedException
      */
-    private function isFlavourSupported($name)
+    private function isFlavourSupported( Name $name)
     {
-        if(!in_array($name, static::SUPPORTED_FLAVOURS)){
-            throw new FlavourNotSupportedException('Flavour ' . $name . ' not supported. Allowed flavours: ' . print_r(static::SUPPORTED_FLAVOURS, true));
+        if(!in_array($name->getName(), static::SUPPORTED_FLAVOURS)){
+            throw new FlavourNotSupportedException('Flavour ' . $name->getName() . ' not supported. Allowed flavours: ' . print_r(static::SUPPORTED_FLAVOURS, true));
         }
     }
 
