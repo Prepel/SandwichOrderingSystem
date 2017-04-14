@@ -12,6 +12,8 @@ class ToppedSandwich
     private $topping;
     /** @var Money */
     private $money;
+    /** @var bool */
+    private $active;
 
     /**
      * ToppedSandwich constructor.
@@ -19,12 +21,14 @@ class ToppedSandwich
      * @param Sandwich $sandwich
      * @param Topping $topping
      * @param Money $money
+     * @param bool $active
      */
-    public function __construct( Sandwich $sandwich, Topping $topping, Money $money )
+    public function __construct( Sandwich $sandwich, Topping $topping, Money $money, $active )
     {
         $this->sandwich = $sandwich;
         $this->topping  = $topping;
         $this->money    = $money;
+        $this->active   = $active;
     }
 
     /**
