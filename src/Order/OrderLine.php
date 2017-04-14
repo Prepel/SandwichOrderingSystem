@@ -16,6 +16,8 @@ class OrderLine
     private $amount;
     /** @var  string */
     private $remark;
+    /** @var  bool */
+    private $processed;
 
     /**
      * OrderLine constructor.
@@ -23,12 +25,14 @@ class OrderLine
      * @param ToppedSandwich $toppedSandwich
      * @param PositiveInt $amount
      * @param string $remark
+     * @param bool $processed
      */
-    public function __construct( ToppedSandwich $toppedSandwich, PositiveInt $amount, $remark )
+    public function __construct( ToppedSandwich $toppedSandwich, PositiveInt $amount, $remark, $processed )
     {
         $this->toppedSandwich = $toppedSandwich;
         $this->amount         = $amount;
         $this->remark         = $remark;
+        $this->processed      = $processed;
     }
 
     /**
@@ -56,16 +60,24 @@ class OrderLine
     }
 
     /**
+     * @return bool
+     */
+    public function isProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
      * @return Money
      */
     public function getTotalPrice()
     {
         $totalPrice = $this->getToppedSandwich()->getMoney()->getAmount()->getAmount() * $this->getAmount()->getAmount();
 
-        $currency = new Currency($this->getToppedSandwich()->getMoney()->getCurrency());
-        $amount = new PositiveFloat($totalPrice);
+        $currency = new Currency( $this->getToppedSandwich()->getMoney()->getCurrency() );
+        $amount   = new PositiveFloat( $totalPrice );
 
-        return new Money($currency, $amount);
+        return new Money( $currency, $amount );
     }
 
 }
