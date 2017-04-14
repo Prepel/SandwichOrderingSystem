@@ -14,7 +14,7 @@ class PositiveFloat
      */
     public function __construct( $amount )
     {
-        if(!is_float($amount) && $amount < 0){
+        if(!is_float($amount) || $amount < 0){
             throw new \InvalidArgumentException('Parameter amount is not a positive float.');
         }
         $this->amount = $amount;

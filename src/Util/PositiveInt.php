@@ -14,7 +14,7 @@ class PositiveInt
      */
     public function __construct( $amount )
     {
-        if(!is_integer($amount) && $amount < 0){
+        if(!is_integer($amount) || $amount < 0){
             throw new \InvalidArgumentException('Parameter amount is not a positive integer.');
         }
         $this->amount = $amount;
