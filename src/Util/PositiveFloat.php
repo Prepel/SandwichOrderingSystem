@@ -27,4 +27,14 @@ class PositiveFloat
     {
         return $this->amount;
     }
+
+    /**
+     * @param $precision
+     *
+     * @return PositiveFloat
+     */
+    public function round($precision)
+    {
+        return new PositiveFloat(round($this->amount, $precision));
+    }
 }
