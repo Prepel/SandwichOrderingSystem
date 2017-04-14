@@ -1,6 +1,6 @@
 <?php
 
-namespace Sandwich;
+namespace Domain\Sandwich;
 
 class Sandwich
 {

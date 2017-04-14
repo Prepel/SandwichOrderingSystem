@@ -1,11 +1,11 @@
 <?php
 
-namespace Order;
+namespace Domain\Order;
 
-use Person\Person;
-use Util\Currency;
-use Util\Money;
-use Util\PositiveFloat;
+use Domain\Person\Person;
+use Domain\Util\Currency;
+use Domain\Util\Money;
+use Domain\Util\PositiveFloat;
 
 class Order
 {

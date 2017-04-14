@@ -1,12 +1,12 @@
 <?php
 
-namespace Order;
+namespace Domain\Order;
 
-use Sandwich\ToppedSandwich;
-use Util\Currency;
-use Util\Money;
-use Util\PositiveInt;
-use Util\PositiveFloat;
+use Domain\Sandwich\ToppedSandwich;
+use Domain\Util\Currency;
+use Domain\Util\Money;
+use Domain\Util\PositiveInt;
+use Domain\Util\PositiveFloat;
 
 class OrderLine
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Sandwich;
+namespace Domain\Sandwich;
 
-use Util\Money;
+use Domain\Util\Money;
 
 class ToppedSandwich
 {

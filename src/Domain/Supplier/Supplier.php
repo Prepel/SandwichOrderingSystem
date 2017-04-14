@@ -1,11 +1,11 @@
 <?php
 
-namespace Supplier;
+namespace Domain\Supplier;
 
-use Sandwich\ToppedSandwich;
-use Util\Email;
-use Util\Name;
-use Util\PhoneNumber;
+use Domain\Sandwich\ToppedSandwich;
+use Domain\Util\Email;
+use Domain\Util\Name;
+use Domain\Util\PhoneNumber;
 
 class Supplier
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Sandwich;
+namespace Domain\Sandwich;
 
-use Util\Name;
+use Domain\Util\Name;
 
 class Topping
 {

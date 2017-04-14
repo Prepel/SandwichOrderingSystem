@@ -1,8 +1,8 @@
 <?php
 
-namespace Person;
+namespace Domain\Person;
 
-use Util\Name;
+use Domain\Util\Name;
 
 class Person
 {

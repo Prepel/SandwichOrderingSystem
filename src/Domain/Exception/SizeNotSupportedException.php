@@ -1,6 +1,6 @@
 <?php
 
-namespace Exception;
+namespace Domain\Exception;
 
 class SizeNotSupportedException extends \Exception
 {

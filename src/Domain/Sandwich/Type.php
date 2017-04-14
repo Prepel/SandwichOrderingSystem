@@ -1,9 +1,9 @@
 <?php
 
-namespace Sandwich;
+namespace Domain\Sandwich;
 
-use Exception\TypeNotSupportedException;
-use Util\Name;
+use Domain\Exception\TypeNotSupportedException;
+use Domain\Util\Name;
 
 class Type
 {

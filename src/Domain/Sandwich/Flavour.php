@@ -1,9 +1,9 @@
 <?php
 
-namespace Sandwich;
+namespace Domain\Sandwich;
 
-use Exception\FlavourNotSupportedException;
-use Util\Name;
+use Domain\Exception\FlavourNotSupportedException;
+use Domain\Util\Name;
 
 class Flavour
 {

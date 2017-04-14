@@ -1,9 +1,9 @@
 <?php
 
-namespace Sandwich;
+namespace Domain\Sandwich;
 
-use Exception\SizeNotSupportedException;
-use Util\Name;
+use Domain\Exception\SizeNotSupportedException;
+use Domain\Util\Name;
 
 class Size
 {

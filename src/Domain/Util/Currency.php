@@ -1,8 +1,8 @@
 <?php
 
-namespace Util;
+namespace Domain\Util;
 
-use Exception\CurrencyNotSupportedException;
+use Domain\Exception\CurrencyNotSupportedException;
 
 class Currency
 {
