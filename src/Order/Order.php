@@ -5,7 +5,7 @@ namespace Order;
 use Person\Person;
 use Util\Currency;
 use Util\Money;
-use Util\PositiveAmount;
+use Util\PositiveFloat;
 
 class Order
 {
@@ -49,13 +49,13 @@ class Order
     {
         $totalPrice = 0;
         foreach ($this->orderLines as $orderline) {
-            $totalPrice += $orderline->getTotalPrice()->getPositiveAmount()->getAmount();
+            $totalPrice += $orderline->getTotalPrice()->getAmount()->getAmount();
         }
 
         $currency = new Currency('EUR'); // TODO what if multiple currencies and how to calculate the price then.
-        $positiveAmount = new PositiveAmount($totalPrice);
+        $amount = new PositiveFloat($totalPrice);
 
-        return new Money($currency, $positiveAmount);
+        return new Money($currency, $amount);
     }
 
 }

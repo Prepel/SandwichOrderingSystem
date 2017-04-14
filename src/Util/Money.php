@@ -6,7 +6,7 @@ class Money
 {
     /** @var Currency  */
     private $currency;
-    /** @var PositiveAmount  */
+    /** @var PositiveFloat  */
     private $amount;
 
     /**
@@ -15,7 +15,7 @@ class Money
      * @param $currency
      * @param $amount
      */
-    public function __construct( Currency $currency, PositiveAmount $amount )
+    public function __construct( Currency $currency, PositiveFloat $amount )
     {
         $this->currency = $currency;
         $this->amount   = $amount;
@@ -30,9 +30,9 @@ class Money
     }
 
     /**
-     * @return PositiveAmount
+     * @return PositiveFloat
      */
-    public function getPositiveAmount()
+    public function getAmount()
     {
         return $this->amount;
     }

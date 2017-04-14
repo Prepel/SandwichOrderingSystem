@@ -5,13 +5,14 @@ namespace Order;
 use Sandwich\ToppedSandwich;
 use Util\Currency;
 use Util\Money;
-use Util\PositiveAmount;
+use Util\PositiveInt;
+use Util\PositiveFloat;
 
 class OrderLine
 {
     /** @var  ToppedSandwich */
     private $toppedSandwich;
-    /** @var  PositiveAmount */
+    /** @var  PositiveInt */
     private $amount;
     /** @var  string */
     private $remark;
@@ -20,10 +21,10 @@ class OrderLine
      * OrderLine constructor.
      *
      * @param ToppedSandwich $toppedSandwich
-     * @param PositiveAmount $amount
+     * @param PositiveInt $amount
      * @param string $remark
      */
-    public function __construct( ToppedSandwich $toppedSandwich, PositiveAmount $amount, $remark )
+    public function __construct( ToppedSandwich $toppedSandwich, PositiveInt $amount, $remark )
     {
         $this->toppedSandwich = $toppedSandwich;
         $this->amount         = $amount;
@@ -39,9 +40,9 @@ class OrderLine
     }
 
     /**
-     * @return PositiveAmount
+     * @return PositiveInt
      */
-    public function getPositiveAmount()
+    public function getAmount()
     {
         return $this->amount;
     }
@@ -59,12 +60,12 @@ class OrderLine
      */
     public function getTotalPrice()
     {
-        $totalPrice = $this->getToppedSandwich()->getMoney()->getPositiveAmount()->getAmount() * $this->getPositiveAmount()->getAmount();
+        $totalPrice = $this->getToppedSandwich()->getMoney()->getAmount()->getAmount() * $this->getAmount()->getAmount();
 
         $currency = new Currency($this->getToppedSandwich()->getMoney()->getCurrency());
-        $positiveAmount = new PositiveAmount($totalPrice);
+        $amount = new PositiveFloat($totalPrice);
 
-        return new Money($currency, $positiveAmount);
+        return new Money($currency, $amount);
     }
 
 }
