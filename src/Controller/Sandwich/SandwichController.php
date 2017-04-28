@@ -1,6 +1,6 @@
 <?php
 
-namespace Controller;
+namespace Controller\Sandwich;
 
 use Dao\Dao;
 use Domain\Sandwich\Flavour;
