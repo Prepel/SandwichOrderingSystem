@@ -6,6 +6,8 @@ use Domain\Util\Money;
 
 class ToppedSandwich
 {
+    /** @var int */
+    private $id;
     /** @var Sandwich */
     private $sandwich;
     /** @var Topping */
@@ -18,17 +20,27 @@ class ToppedSandwich
     /**
      * ToppedSandwich constructor.
      *
+     * @param int $id
      * @param Sandwich $sandwich
      * @param Topping $topping
      * @param Money $money
      * @param bool $active
      */
-    public function __construct( Sandwich $sandwich, Topping $topping, Money $money, $active )
+    public function __construct($id, Sandwich $sandwich, Topping $topping, Money $money, $active )
     {
+        $this->id       = $id;
         $this->sandwich = $sandwich;
         $this->topping  = $topping;
         $this->money    = $money;
         $this->active   = $active;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -55,4 +67,11 @@ class ToppedSandwich
         return $this->money;
     }
 
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
 }

@@ -9,6 +9,8 @@ use Domain\Util\PhoneNumber;
 
 class Supplier
 {
+    /** @var  int */
+    private $id;
     /** @var Name */
     private $name;
     /** @var  Email */
@@ -21,18 +23,28 @@ class Supplier
     /**
      * Supplier constructor.
      *
+     * @param int $id
      * @param Name $name
      * @param Email $email
      * @param PhoneNumber $phoneNumber
      * @param ToppedSandwich[] $toppedSandwiches
      */
-    public function __construct( Name $name, Email $email, PhoneNumber $phoneNumber, array $toppedSandwiches )
+    public function __construct( $id, Name $name, Email $email, PhoneNumber $phoneNumber, array $toppedSandwiches )
     {
+        $this->id               = $id;
         $this->name             = $name;
         $this->email            = $email;
         $this->phoneNumber      = $phoneNumber;
 
         $this->addToppedSandwiches($toppedSandwiches);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
