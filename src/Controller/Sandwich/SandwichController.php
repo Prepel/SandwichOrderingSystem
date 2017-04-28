@@ -17,61 +17,87 @@ use Domain\Util\PositiveFloat;
 
 class SandwichController
 {
+
     /**
-     * @param Supplier $supplier
+     * @param int $id
      *
-     * @return array
+     * @return ToppedSandwich
      */
-    public function getActiveToppedSandwichesForSupplier( Supplier $supplier )
+    public function getToppedSandwichById( $id )
     {
         $dao                = new Dao();
-        $toppedSandwichData = $dao->getActiveToppedSandwichesBySupplierId( $supplier->getId() );
-        return $this->createToppedSandwichesFromDatabaseData( $toppedSandwichData );
+        $toppedSandwichData = $dao->getToppedSandwichById( $id );
+
+        if (!$toppedSandwichData) {
+            throw new ToppedSandwichNotFoundException( 'ToppedSandwich with id: ' . $id . ' can not be found.' );
+        }
+
+        return $this->createToppedSandwichFromDatabaseData($toppedSandwichData);
     }
 
     /**
-     * @param $toppedSandwichData
+     * @param Supplier $supplier
      *
-     * @return array
+     * @return ToppedSandwich[]
      */
-    private function createToppedSandwichesFromDatabaseData( $toppedSandwichData )
+    public function getActiveToppedSandwichesForSupplier( Supplier $supplier )
+    {
+        $dao                  = new Dao();
+        $toppedSandwichesData = $dao->getActiveToppedSandwichesBySupplierId( $supplier->getId() );
+        return $this->createToppedSandwichesFromDatabaseData( $toppedSandwichesData );
+    }
+
+    /**
+     * @param array $toppedSandwichesData
+     *
+     * @return ToppedSandwich[]
+     */
+    private function createToppedSandwichesFromDatabaseData( $toppedSandwichesData )
     {
         $toppedSandwiches = [];
 
-        // TODO think of a good name
-        foreach ($toppedSandwichData as $ts) {
+        foreach ($toppedSandwichesData as $toppedSandwichData) {
 
-            $sandwich = new Sandwich(
-                new Type(
-                    new Name( $ts[ 'type' ] )
-                ),
-                new Size(
-                    new Name( $ts[ 'size' ] )
-                ),
-                new Flavour(
-                    new Name( $ts[ 'flavour' ] )
-                )
-            );
-
-            $topping = new Topping(
-                new Name( $ts[ 'topping' ] )
-            );
-
-            $money = new Money(
-                new Currency( 'EUR' ),
-                new PositiveFloat( $ts[ 'price' ] )
-            );
-
-
-            $toppedSandwiches[] = new ToppedSandwich(
-                $ts[ 'id' ],
-                $sandwich,
-                $topping,
-                $money,
-                $ts[ 'active' ]
-            );
+            $toppedSandwiches[] = $this->createToppedSandwichFromDatabaseData( $toppedSandwichData );
         }
 
         return $toppedSandwiches;
+    }
+
+    /**
+     * @param array $toppedSandwichData
+     *
+     * @return ToppedSandwich
+     */
+    private function createToppedSandwichFromDatabaseData( $toppedSandwichData )
+    {
+        $sandwich = new Sandwich(
+            new Type(
+                new Name( $toppedSandwichData[ 'type' ] )
+            ),
+            new Size(
+                new Name( $toppedSandwichData[ 'size' ] )
+            ),
+            new Flavour(
+                new Name( $toppedSandwichData[ 'flavour' ] )
+            )
+        );
+
+        $topping = new Topping(
+            new Name( $toppedSandwichData[ 'topping' ] )
+        );
+
+        $money = new Money(
+            new Currency( 'EUR' ),
+            new PositiveFloat( $toppedSandwichData[ 'price' ] )
+        );
+
+        return new ToppedSandwich(
+            $toppedSandwichData[ 'id' ],
+            $sandwich,
+            $topping,
+            $money,
+            $toppedSandwichData[ 'active' ]
+        );
     }
 }

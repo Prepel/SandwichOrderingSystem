@@ -17,13 +17,20 @@ class Order
     /**
      * Order constructor.
      *
-     * @param OrderLine[] $orderLines
      * @param Person $person
      */
-    public function __construct( array $orderLines, Person $person )
+    public function __construct( Person $person )
     {
-        $this->orderLines = $orderLines;
-        $this->person     = $person;
+        $this->person = $person;
+    }
+
+    /**
+     * @param OrderLine $orderLine
+     */
+    public function addOrderLine( $orderLine )
+    {
+        // TODO logic if allowed?
+        $this->orderLines[] = $orderLine;
     }
 
     /**
@@ -52,10 +59,10 @@ class Order
             $totalPrice += $orderline->getTotalPrice()->getAmount()->getAmount();
         }
 
-        $currency = new Currency('EUR'); // TODO what if multiple currencies and how to calculate the price then.
-        $amount = new PositiveFloat($totalPrice);
+        $currency = new Currency( 'EUR' ); // TODO what if multiple currencies and how to calculate the price then.
+        $amount   = new PositiveFloat( $totalPrice );
 
-        return new Money($currency, $amount);
+        return new Money( $currency, $amount );
     }
 
 }

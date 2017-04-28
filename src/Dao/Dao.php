@@ -18,6 +18,33 @@ class Dao
     }
 
     /** Sandwiches */
+
+    /**
+     * @param $toppedSandwichId
+     *
+     * @return array
+     */
+    public function getToppedSandwichById($toppedSandwichId)
+    {
+        $stmt = $this->pdo->prepare( "
+            SELECT  id,
+                    supplier_id,
+                    type,
+                    size,
+                    flavour,
+                    topping,
+                    price,
+                    active
+            FROM    topped_sandwich
+            WHERE   id = :toppedSandwichId
+        " );
+
+        $stmt->bindValue( ':toppedSandwichId', $toppedSandwichId );
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
     /**
      * @param int $supplierId
      *
@@ -88,4 +115,36 @@ class Dao
     }
 
     /** END OF Supplier */
+
+
+
+    /** Order */
+
+    /**
+     * @param $personName
+     *
+     * @return array
+     */
+    public function getUnprocessedOrderByPersonName($personName)
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT      o.id,
+                        o.person_name,
+                        ol.id,
+                        ol.topped_sandwich_id,
+                        ol.amount,
+                        ol.remark,
+                        ol.processed
+            FROM        `order` o
+            INNER JOIN  order_line ol ON o.id = ol.order_id
+            WHERE       person_name = :personName
+            AND         ol.processed = 0
+        ");
+
+        $stmt->bindValue(':personName', $personName);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    /** END OF Order */
 }
