@@ -72,7 +72,7 @@ class OrderLine
      */
     public function getTotalPrice()
     {
-        $totalPrice = $this->getToppedSandwich()->getMoney()->getAmount()->getAmount() * $this->getAmount()->getAmount();
+        $totalPrice = $this->getToppedSandwich()->getMoney()->getAmount()->getFloat() * $this->getAmount()->getInt();
 
         $currency = new Currency( $this->getToppedSandwich()->getMoney()->getCurrency() );
         $amount   = new PositiveFloat( $totalPrice );

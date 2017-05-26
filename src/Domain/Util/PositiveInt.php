@@ -5,7 +5,7 @@ namespace Domain\Util;
 class PositiveInt
 {
     /** @var int */
-    private $amount;
+    private $int;
 
     /**
      * PositiveInt constructor.
@@ -21,15 +21,15 @@ class PositiveInt
         if(!is_integer($amount) || $amount < 0){
             throw new \InvalidArgumentException('Parameter amount is not a positive integer.');
         }
-        $this->amount = $amount;
+        $this->int = $amount;
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function getAmount()
+    public function getInt()
     {
-        return $this->amount;
+        return $this->int;
     }
 
 }

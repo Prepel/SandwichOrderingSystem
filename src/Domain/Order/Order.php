@@ -56,7 +56,7 @@ class Order
     {
         $totalPrice = 0;
         foreach ($this->orderLines as $orderline) {
-            $totalPrice += $orderline->getTotalPrice()->getAmount()->getAmount();
+            $totalPrice += $orderline->getTotalPrice()->getAmount()->getFloat();
         }
 
         $currency = new Currency( 'EUR' ); // TODO what if multiple currencies and how to calculate the price then.

@@ -5,7 +5,7 @@ namespace Domain\Util;
 class PositiveFloat
 {
     /** @var float */
-    private $amount;
+    private $float;
 
     /**
      * PositiveFloat constructor.
@@ -21,15 +21,15 @@ class PositiveFloat
         if(!is_float($amount) || $amount < 0){
             throw new \InvalidArgumentException('Parameter amount is not a positive float.');
         }
-        $this->amount = $amount;
+        $this->float = $amount;
     }
 
     /**
      * @return float
      */
-    public function getAmount()
+    public function getFloat()
     {
-        return $this->amount;
+        return $this->float;
     }
 
     /**
@@ -39,6 +39,6 @@ class PositiveFloat
      */
     public function round($precision)
     {
-        return new PositiveFloat(round($this->amount, $precision));
+        return new PositiveFloat(round($this->float, $precision));
     }
 }
