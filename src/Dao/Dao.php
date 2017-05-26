@@ -128,9 +128,9 @@ class Dao
     public function getUnprocessedOrderByPersonName($personName)
     {
         $stmt = $this->pdo->prepare("
-            SELECT      o.id,
+            SELECT      o.id as order_id,
                         o.person_name,
-                        ol.id,
+                        ol.id as order_line_id,
                         ol.topped_sandwich_id,
                         ol.amount,
                         ol.remark,

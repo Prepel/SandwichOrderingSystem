@@ -60,7 +60,7 @@ class SupplierController
     private function createsupplierFromDatabaseData( $supplierData )
     {
         $sandwichController = new SandwichController();
-        $toppedSandwiches   = $sandwichController->getActiveToppedSandwichesForSupplier( $supplierData[ 'id' ] );
+        $toppedSandwiches   = $sandwichController->getActiveToppedSandwichesForSupplierId( $supplierData[ 'id' ] );
 
         return new Supplier(
             $supplierData[ 'id' ],

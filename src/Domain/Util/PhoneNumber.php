@@ -13,7 +13,7 @@ class PhoneNumber
      */
     public function __construct( $phoneNumber )
     {
-        if($this->validatePhoneNumber($phoneNumber)) {
+        if(!$this->validatePhoneNumber($phoneNumber)) {
             throw new \InvalidArgumentException('Invalid phone number');
         }
 
@@ -28,6 +28,11 @@ class PhoneNumber
         return $this->phoneNumber;
     }
 
+    /**
+     * @param $phoneNumber
+     *
+     * @return bool
+     */
     private function validatePhoneNumber($phoneNumber)
     {
         return (bool) preg_match('/0+([0-9]{8,12})/', $phoneNumber);

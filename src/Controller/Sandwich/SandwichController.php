@@ -36,14 +36,14 @@ class SandwichController
     }
 
     /**
-     * @param Supplier $supplier
+     * @param int $supplierId
      *
      * @return ToppedSandwich[]
      */
-    public function getActiveToppedSandwichesForSupplier( Supplier $supplier )
+    public function getActiveToppedSandwichesForSupplierId( $supplierId )
     {
         $dao                  = new Dao();
-        $toppedSandwichesData = $dao->getActiveToppedSandwichesBySupplierId( $supplier->getId() );
+        $toppedSandwichesData = $dao->getActiveToppedSandwichesBySupplierId( $supplierId );
         return $this->createToppedSandwichesFromDatabaseData( $toppedSandwichesData );
     }
 

@@ -38,7 +38,7 @@ class OrderController
         $sandwichController = new SandwichController();
 
         foreach ($ordersData as $orderData) {
-            $orderId = $orderData[ 'id' ];
+            $orderId = $orderData[ 'order_id' ];
 
             if (!array_key_exists( $orderId, $orders )) {
                 $orders[ $orderId ] = new Order( new Person( new Name( $orderData[ 'person_name' ] ) ) );
