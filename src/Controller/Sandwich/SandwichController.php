@@ -2,14 +2,13 @@
 
 namespace Controller\Sandwich;
 
-use Dao\Dao;
+use Dao\SandwichDao;
 use Domain\Sandwich\Flavour;
 use Domain\Sandwich\Sandwich;
 use Domain\Sandwich\Size;
 use Domain\Sandwich\ToppedSandwich;
 use Domain\Sandwich\Topping;
 use Domain\Sandwich\Type;
-use Domain\Supplier\Supplier;
 use Domain\Util\Currency;
 use Domain\Util\Money;
 use Domain\Util\Name;
@@ -25,7 +24,7 @@ class SandwichController
      */
     public function getToppedSandwichById( $id )
     {
-        $dao                = new Dao();
+        $dao                = new SandwichDao();
         $toppedSandwichData = $dao->getToppedSandwichById( $id );
 
         if (!$toppedSandwichData) {
@@ -42,7 +41,7 @@ class SandwichController
      */
     public function getActiveToppedSandwichesForSupplierId( $supplierId )
     {
-        $dao                  = new Dao();
+        $dao                  = new SandwichDao();
         $toppedSandwichesData = $dao->getActiveToppedSandwichesBySupplierId( $supplierId );
         return $this->createToppedSandwichesFromDatabaseData( $toppedSandwichesData );
     }

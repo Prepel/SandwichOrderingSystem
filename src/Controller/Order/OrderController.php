@@ -3,7 +3,7 @@
 namespace Controller\Order;
 
 use Controller\Sandwich\SandwichController;
-use Dao\Dao;
+use Dao\OrderDao;
 use Domain\Order\Order;
 use Domain\Order\OrderLine;
 use Domain\Person\Person;
@@ -19,7 +19,7 @@ class OrderController
      */
     public function getUnprocessedOrdersByPerson( $personName )
     {
-        $dao                   = new Dao();
+        $dao                   = new OrderDao();
         $unprocessedOrdersData = $dao->getUnprocessedOrderByPersonName( $personName);
 
         return $this->createOrdersFromDatabaseData($unprocessedOrdersData);

@@ -3,7 +3,7 @@
 namespace Controller\Supplier;
 
 use Controller\Sandwich\SandwichController;
-use Dao\Dao;
+use Dao\SupplierDao;
 use Domain\Supplier\Supplier;
 use Domain\Util\Email;
 use Domain\Util\Name;
@@ -14,7 +14,7 @@ class SupplierController
 
     public function getSuppliers()
     {
-        $dao = new Dao();
+        $dao = new SupplierDao();
         $suppliersData = $dao->getSuppliers();
 
         return $this->createSuppliersFromDatabaseData($suppliersData);
@@ -27,7 +27,7 @@ class SupplierController
      */
     public function getSupplierById( $supplierId )
     {
-        $dao          = new Dao();
+        $dao          = new SupplierDao();
         $supplierData = $dao->getSupplierById( $supplierId );
 
         if (!$supplierData) {
