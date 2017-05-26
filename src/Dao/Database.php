@@ -52,7 +52,7 @@ class Database
      */
     private function __construct()
     {
-        $this->host     = 'localhost';
+        $this->host     = '127.0.0.1';
         $this->schema   = 'SandwichOrderingSystem';
         $this->user     = 'root';
         $this->password = '';

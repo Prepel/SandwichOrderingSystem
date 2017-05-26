@@ -7,6 +7,7 @@ use Dao\Dao;
 use Domain\Order\Order;
 use Domain\Order\OrderLine;
 use Domain\Person\Person;
+use Domain\Util\Name;
 use Domain\Util\PositiveInt;
 
 class OrderController
@@ -40,7 +41,7 @@ class OrderController
             $orderId = $orderData[ 'id' ];
 
             if (!array_key_exists( $orderId, $orders )) {
-                $orders[ $orderId ] = new Order( new Person( $orderData[ 'person_name' ] ) );
+                $orders[ $orderId ] = new Order( new Person( new Name( $orderData[ 'person_name' ] ) ) );
             }
 
             $orders[ $orderId ]->addOrderLine(
