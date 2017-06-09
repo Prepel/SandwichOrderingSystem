@@ -8,9 +8,15 @@ use Silex\Application;
 
 class ViewController
 {
+    public function renderPersonLoginOverview(Application $app)
+    {
+        return $app['twig']->render('helloworld.twig');
+    }
+
     public function renderSandwichOverviewPage(Application $app, $supplierId){
         $supplierController = new SupplierController();
         $supplier = $supplierController->getSupplierById($supplierId);
+
 
         // TODO twig rendering en mooie pagina bouwen.
 
