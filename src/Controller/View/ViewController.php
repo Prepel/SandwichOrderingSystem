@@ -5,12 +5,23 @@ namespace Controller\View;
 
 use Controller\Supplier\SupplierController;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 
 class ViewController
 {
-    public function renderPersonLoginOverview(Application $app)
+    public function renderPersonLoginOverview(Application $app, Request $request)
     {
-        return $app['twig']->render('helloworld.twig');
+        // step 1; check if cookie name is present. then redirect to step 2.
+        if($request->cookies->get('username')){
+            return Response::create('', 302, array("Location" => "/selectSupplier"));
+        }
+        // else render form
+        return $app['twig']->render('login.twig');
+    }
+
+    public function renderSupplierSelectOverview(Application $app)
+    {
+        return 'test';
     }
 
     public function renderSandwichOverviewPage(Application $app, $supplierId){

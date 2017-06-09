@@ -16,9 +16,16 @@ $app->register(
 // step 1 logging in:
 $app->get( '/', '\Controller\View\ViewController::renderPersonLoginOverview');
 
+//step 2 selecting supplier:
+$app->get( '/selectSupplier', '\Controller\View\ViewController::renderSupplierSelectOverview');
+
+
 $app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' );
 
 $app->get( '/sandwiches/{supplierId}', '\Controller\View\ViewController::renderSandwichOverviewPage' );
 $app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' );
+
+// POST requests (form submits)
+$app->post('/login/{personName}', '\Controller\Person\PersonController::registerPerson');
 
 $app->run();
