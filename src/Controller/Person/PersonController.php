@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PersonController
 {
+    /**
+     * @param Request $request
+     * @param $personName
+     *
+     * @return static
+     */
     public function registerPerson(Request $request, $personName)
     {
         if(($request->get('personName'))){
