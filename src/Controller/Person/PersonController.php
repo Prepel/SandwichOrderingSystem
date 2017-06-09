@@ -29,4 +29,13 @@ class PersonController
             return $response;
         }
     }
+
+    public function verifyLoggedIn(Request $request)
+    {
+        if($request->cookies->get('username')){
+            return null;
+        } else {
+            return Response::create('', 302, array("Location" => "/login"));
+        }
+    }
 }

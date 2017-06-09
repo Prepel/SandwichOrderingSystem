@@ -13,17 +13,26 @@ $app->register(
     new \Silex\Provider\TwigServiceProvider(), array( 'twig.path' => __DIR__ . '/templates' )
 );
 
+$verifyLoggedIn = function (\Symfony\Component\HttpFoundation\Request $request){
+    $personController = new \Controller\Person\PersonController();
+    return $personController->verifyLoggedIn($request);
+};
+
 // step 1 logging in:
 $app->get( '/', '\Controller\View\ViewController::renderPersonLoginOverview');
 
 //step 2 selecting supplier:
-$app->get( '/selectSupplier', '\Controller\View\ViewController::renderSupplierSelectOverview');
+$app->get( '/selectSupplier', '\Controller\View\ViewController::renderSupplierSelectOverview')
+    ->before($verifyLoggedIn);
 
 
-$app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' );
+$app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' )
+    ->before($verifyLoggedIn);
 
-$app->get( '/sandwiches/{supplierId}', '\Controller\View\ViewController::renderSandwichOverviewPage' );
-$app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' );
+$app->get( '/sandwiches/{supplierId}', '\Controller\View\ViewController::renderSandwichOverviewPage' )
+    ->before($verifyLoggedIn);
+$app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' )
+    ->before($verifyLoggedIn);
 
 // POST requests (form submits)
 $app->post('/login/{personName}', '\Controller\Person\PersonController::registerPerson');
