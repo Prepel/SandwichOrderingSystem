@@ -24,7 +24,7 @@ class PersonController
         if($person instanceof Person){
 
             $cookie = new Cookie("username", $person->getName()->getName());
-            $response = Response::create('', 302, array("Location" => "/selectSupplier"));
+            $response = Response::create('', 302, array("Location" => "/orderPage/1"));
             $response->headers->setCookie($cookie);
             return $response;
         }

@@ -20,15 +20,16 @@ $verifyLoggedIn = function (\Symfony\Component\HttpFoundation\Request $request){
 
 // step 1 logging in:
 $app->get( '/', '\Controller\View\ViewController::renderPersonLoginOverview');
+$app->get( '/login', '\Controller\View\ViewController::renderPersonLoginOverview');
 
-//step 2 selecting supplier:
-$app->get( '/selectSupplier', '\Controller\View\ViewController::renderSupplierSelectOverview')
+
+//step 2 order sandwich:
+$app->get( '/orderPage/{supplierId}', '\Controller\View\ViewController::renderOrderPage')
     ->before($verifyLoggedIn);
 
 
-$app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' )
-    ->before($verifyLoggedIn);
 
+// others.
 $app->get( '/sandwiches/{supplierId}', '\Controller\View\ViewController::renderSandwichOverviewPage' )
     ->before($verifyLoggedIn);
 $app->get( '/order/{personName}', '\Controller\Order\OrderController::getUnprocessedOrdersByPerson' )

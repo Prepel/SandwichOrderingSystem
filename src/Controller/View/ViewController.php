@@ -44,14 +44,13 @@ class ViewController
      *
      * @return mixed
      */
-    public function renderSandwichOverviewPage(Application $app, $supplierId){
+    public function renderOrderPage(Application $app, $supplierId = 1){
         $supplierController = new SupplierController();
         $supplier = $supplierController->getSupplierById($supplierId);
 
-
+        return $app['twig']->render('orderPage/orderPage.twig', ['supplier' => $supplier]);
         // TODO twig rendering en mooie pagina bouwen.
 
         // TODO mogelijk nog logica om te zorgen dat dit goed weergegeven kan worden.
-        return print_r($supplier, true);
     }
 }
