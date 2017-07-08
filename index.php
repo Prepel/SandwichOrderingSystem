@@ -27,6 +27,9 @@ $app->get( '/login', '\Controller\View\ViewController::renderPersonLoginOverview
 $app->get( '/orderPage/{supplierId}', '\Controller\View\ViewController::renderOrderPage')
     ->before($verifyLoggedIn);
 
+// ajax data requests
+$app->get( '/orderPage/select/{flavour}/{supplierId}', '\Controller\View\ViewController::renderSelectPopup')
+    ->before($verifyLoggedIn);
 
 
 // others.

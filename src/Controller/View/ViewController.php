@@ -53,4 +53,17 @@ class ViewController
 
         // TODO mogelijk nog logica om te zorgen dat dit goed weergegeven kan worden.
     }
+
+    /**
+     * @param Application $app
+     * @param $flavour
+     * @param $supplierId
+     */
+    public function renderSelectPopup(Application $app, $flavour, $supplierId){
+
+        // TODO Get all linked sandwiches to flavour and supplier
+        // TODO get possible configurations
+        // TODO render twig.
+
+    }
 }
