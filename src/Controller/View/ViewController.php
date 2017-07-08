@@ -48,7 +48,15 @@ class ViewController
         $supplierController = new SupplierController();
         $supplier = $supplierController->getSupplierById($supplierId);
 
-        return $app['twig']->render('orderPage/orderPage.twig', ['supplier' => $supplier]);
+        $uniqueToppings = $supplier->getUniqueToppings();
+
+            return $app['twig']->render(
+            'orderPage/orderPage.twig',
+            [
+                'supplier' => $supplier,
+                'toppings' => $uniqueToppings
+            ]
+        );
         // TODO twig rendering en mooie pagina bouwen.
 
         // TODO mogelijk nog logica om te zorgen dat dit goed weergegeven kan worden.

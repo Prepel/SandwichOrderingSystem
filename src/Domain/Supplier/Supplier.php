@@ -2,6 +2,7 @@
 
 namespace Domain\Supplier;
 
+use Domain\Helpers\UniqueToppings;
 use Domain\Sandwich\ToppedSandwich;
 use Domain\Util\Email;
 use Domain\Util\Name;
@@ -77,6 +78,18 @@ class Supplier
     public function getToppedSandwiches()
     {
         return $this->toppedSandwiches;
+    }
+
+    /**
+     * @return UniqueToppings
+     */
+    public function getUniqueToppings(){
+        $uniqueToppings = new UniqueToppings();
+        foreach($this->toppedSandwiches as $toppedSandwich){
+            $uniqueToppings->addTopping($toppedSandwich->getTopping());
+        }
+
+        return $uniqueToppings;
     }
 
     /**
