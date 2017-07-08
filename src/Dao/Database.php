@@ -52,14 +52,27 @@ class Database
      */
     private function __construct()
     {
-        $this->host     = '127.0.0.1';
-        $this->schema   = 'SandwichOrderingSystem';
-        $this->user     = 'root';
-        $this->password = '';
+        $this->getConfigurations();
 
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->schema;
 
         $this->connection = new \PDO( $dsn, $this->user, $this->password );
+    }
+
+    /**
+     * @throws ConfigurationMissingException
+     */
+    private function getConfigurations(){
+        $configurations = include('settings.php');
+        if(isset($configurations['db-host']) && isset($configurations['db-user']) && isset($configurations['db-password']) && isset($configurations['db-schema'])){
+            $this->host     = $configurations['db-host'];
+            $this->schema   = $configurations['db-schema'];
+            $this->user     = $configurations['db-user'];
+            $this->password = $configurations['db-password'];
+        } else {
+            throw new ConfigurationMissingException('Database configuration missing.');
+        }
+
     }
 
     /**
